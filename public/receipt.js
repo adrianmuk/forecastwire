@@ -26,7 +26,10 @@ async function json(resource) {
   return body;
 }
 function schedule(minDelay = 0) {
-  const delay = Math.max(minDelay, [2_000, 5_000, 12_000, 30_000, 60_000][Math.min(retryCount++, 4)]);
+  // Retry incomplete market details promptly at first, then ease off so an
+  // extended Panta outage does not generate a steady stream of requests.
+  const intervals = [2_000, 3_000, 5_000, 10_000, 20_000, 30_000, 60_000];
+  const delay = Math.max(minDelay, intervals[Math.min(retryCount++, intervals.length - 1)]);
   setTimeout(loadLive, delay);
 }
 function changeText(nowSide) {
@@ -74,6 +77,12 @@ async function init() {
     $('receipt-copy').addEventListener('click', async () => {
       try { await navigator.clipboard.writeText(location.href); $('receipt-copy-status').textContent = 'Receipt link copied.'; }
       catch { $('receipt-copy-status').textContent = 'Copy this page’s URL from your browser address bar.'; }
+    });
+    $('receipt-copy-embed').addEventListener('click', async () => {
+      const src = `${location.origin}/embed-receipt?token=${encodeURIComponent(token)}`;
+      const code = `<iframe src="${src}" title="ForecastWire prediction receipt" width="100%" height="380" style="border:0;max-width:700px" loading="lazy"></iframe>`;
+      try { await navigator.clipboard.writeText(code); $('receipt-copy-status').textContent = 'Receipt embed code copied.'; }
+      catch { $('receipt-copy-status').textContent = 'Clipboard unavailable. Copy the receipt link instead.'; }
     });
     $('receipt-content').hidden = false;
     loadLive();

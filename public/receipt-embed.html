@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>ForecastWire receipt card</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/receipt-embed.js" defer></script>
+</head>
+<body class="receipt-embed-body">
+  <main class="receipt-embed-card">
+    <div class="receipt-embed-header"><span>F<span class="brand-dot">.</span> FORECASTWIRE</span><span>FORECAST RECEIPT</span></div>
+    <h1 id="embed-receipt-title">Verifying forecast…</h1>
+    <p id="embed-receipt-error" role="alert" hidden></p>
+    <div id="embed-receipt-content" hidden>
+      <p id="embed-receipt-call" class="receipt-embed-call"></p>
+      <p id="embed-receipt-note" class="receipt-embed-note" hidden></p>
+      <div class="receipt-embed-quotes">
+        <div><small>AT CAPTURE</small><strong id="embed-receipt-at">—</strong><time id="embed-receipt-time"></time></div>
+        <div><small>CURRENT PANTA</small><strong id="embed-receipt-now">—</strong><span id="embed-receipt-status" role="status">Checking live price…</span></div>
+      </div>
+      <p id="embed-receipt-change" class="receipt-embed-change"></p>
+      <div class="receipt-embed-footer"><a id="embed-receipt-link" href="/" target="_blank" rel="noopener noreferrer">Open verified receipt ↗</a><a href="https://www.panta.market/" target="_blank" rel="noopener noreferrer">Powered by Panta ↗</a></div>
+      <p class="receipt-embed-disclosure">ForecastWire verifies this signed snapshot. It is not independent on-chain proof of the historical price.</p>
+    </div>
+  </main>
+</body>
+</html>
