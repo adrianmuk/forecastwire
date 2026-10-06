@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="description" content="A signed Panta market quote captured by ForecastWire, alongside the current market price.">
+  <title>Forecast receipt — ForecastWire</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/receipt.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="ForecastWire home"><span class="brand-mark">F<span class="brand-dot">.</span></span><span>FORECAST<span class="brand-light">WIRE</span></span></a>
+    <nav aria-label="Main navigation"><a href="/">Explore markets</a><a class="nav-pill" href="https://docs.panta.market/" target="_blank" rel="noopener noreferrer">About Panta <span aria-hidden="true">↗</span></a></nav>
+  </header>
+  <main class="receipt-shell shell">
+    <p class="eyebrow light">FORECAST RECEIPT / PANTA</p>
+    <h1 id="receipt-title">Checking this receipt…</h1>
+    <p id="receipt-error" class="receipt-error" role="alert" hidden></p>
+    <div id="receipt-content" hidden>
+      <p id="receipt-note" class="receipt-context" hidden></p>
+      <p class="receipt-explainer"><strong id="receipt-side"></strong> A price captured at one moment, alongside what Panta reports now. Share this link when discussing how expectations changed.</p>
+      <div class="receipt-grid">
+        <section class="receipt-card receipt-at" aria-labelledby="receipt-at-heading">
+          <p class="eyebrow light">AT CAPTURE</p><h2 id="receipt-at-heading">The recorded quote.</h2>
+          <p id="receipt-at-time" class="receipt-time"></p>
+          <div class="receipt-prices"><div><small>YES SHARE</small><strong id="receipt-at-yes">—</strong></div><div><small>NO SHARE</small><strong id="receipt-at-no">—</strong></div></div>
+          <p id="receipt-verified" class="receipt-verified">Signature verified by ForecastWire.</p>
+        </section>
+        <section class="receipt-card receipt-now" aria-labelledby="receipt-now-heading">
+          <p class="eyebrow light">CURRENT PANTA DATA</p><h2 id="receipt-now-heading">The latest quote.</h2>
+          <p id="receipt-now-time" class="receipt-time">Checking the live market…</p>
+          <div class="receipt-prices"><div><small>YES SHARE</small><strong id="receipt-now-yes">—</strong></div><div><small>NO SHARE</small><strong id="receipt-now-no">—</strong></div></div>
+          <p id="receipt-live-status" class="receipt-live-status" role="status">Loading Panta data…</p>
+        </section>
+      </div>
+      <p id="receipt-change" class="receipt-change" role="status">Comparing the quotes…</p>
+      <p id="receipt-phase" class="receipt-phase"></p>
+      <div class="receipt-actions"><button id="receipt-copy" type="button" class="secondary-button">↗ Copy receipt link</button><a id="receipt-market-link" class="secondary-button" href="/">Open full market brief</a><a id="receipt-chain-link" class="secondary-button" href="#" target="_blank" rel="noopener noreferrer">View market on Solana ↗</a></div>
+      <p id="receipt-copy-status" class="receipt-copy-status" role="status"></p>
+      <p class="receipt-disclosure">ForecastWire signs the captured Panta API response so this link cannot be edited without detection. The signature is issued by ForecastWire; it is not independent on-chain proof of the historical price. Market prices are signals, not guaranteed outcomes.</p>
+      <p class="detail-credit">Market data <a href="https://www.panta.market/" target="_blank" rel="noopener noreferrer">Powered by Panta ↗</a></p>
+    </div>
+  </main>
+  <footer class="site-footer shell"><div><span class="brand-mark small">F<span class="brand-dot">.</span></span><span>FORECASTWIRE</span></div><p>Capture the quote. Revisit the signal.</p></footer>
+</body>
+</html>

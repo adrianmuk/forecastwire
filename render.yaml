@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: forecastwire
+    runtime: node
+    plan: free
+    buildCommand: npm install --omit=dev
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: PANTA_API_KEY
+        sync: false
+      - key: FORECASTWIRE_RECEIPT_SECRET
+        sync: false
+      - key: PANTA_SOLANA_CLUSTER
+        value: mainnet-beta

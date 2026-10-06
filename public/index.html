@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b23">
+  <meta name="description" content="Capture a Panta market price, share a signed forecast receipt, and see how the live signal changes.">
+  <title>ForecastWire — capture and revisit a forecast</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="ForecastWire home"><span class="brand-mark">F<span class="brand-dot">.</span></span><span>FORECAST<span class="brand-light">WIRE</span></span></a>
+    <nav aria-label="Main navigation"><a href="#explore">Explore markets</a><a href="#portfolio">Wallet lens</a><a class="nav-pill" href="https://docs.panta.market/" target="_blank" rel="noopener noreferrer">About Panta <span aria-hidden="true">↗</span></a></nav>
+  </header>
+
+  <main>
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="signal-dot"></span> LIVE MARKET INTELLIGENCE <span class="eyebrow-line"></span> SOLANA</p>
+        <h1 id="hero-title">Give every forecast<br>a <em>point in time.</em></h1>
+        <p class="hero-description">Make a YES or NO call on a live Panta market. Share a signed receipt of the price and time, then see how the market moves after your prediction.</p>
+        <a class="primary-button" href="#explore">Explore the market wire <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div>
+        <div class="hero-glow"></div><div class="hero-core">FW<span>•</span></div>
+        <div class="hero-data data-a">SIGNAL / 01</div><div class="hero-data data-b">EVENTS → INSIGHT</div>
+        <div class="hero-tick tick-a"></div><div class="hero-tick tick-b"></div>
+      </div>
+    </section>
+
+    <section class="workspace shell" id="explore" aria-labelledby="explore-title">
+      <div class="section-heading"><div><p class="eyebrow light">01 / DISCOVER</p><h2 id="explore-title">The market wire</h2><p>Browse events, open a live brief, and follow the ones that matter.</p></div><div class="powered">Market data <a href="https://www.panta.market/" target="_blank" rel="noopener noreferrer">Powered by Panta ↗</a></div></div>
+      <div id="setup-banner" class="setup-banner" hidden><strong>Connect the live data.</strong> Add your Panta API key as <code>PANTA_API_KEY</code> on the server, then reload. The key never enters the browser. <a href="https://docs.panta.market/quickstart" target="_blank" rel="noopener noreferrer">Get a key ↗</a></div>
+      <div class="work-grid">
+        <div class="catalog-panel">
+          <div class="catalog-top"><div class="segmented" role="tablist" aria-label="Market list"><button id="tab-discover" role="tab" aria-selected="true">Discover</button><button id="tab-following" role="tab" aria-selected="false">Following <span id="follow-count">0</span></button></div><button id="refresh-button" class="icon-button" type="button" title="Refresh markets and selected brief" aria-label="Refresh markets and selected brief">↻</button></div>
+          <div class="filters"><label class="search-box"><span aria-hidden="true">⌕</span><span class="sr-only">Search catalog pages or paste a market ID</span><input id="search-input" type="search" placeholder="Search markets or paste market ID"></label><label class="sr-only" for="category-select">Category</label><select id="category-select"><option value="">All categories</option></select><label class="sr-only" for="status-select">Market state</label><select id="status-select"><option value="">All states</option><option value="primary">Primary</option><option value="secondary">Secondary</option><option value="resolved">Resolved</option></select></div>
+          <div class="catalog-meta"><span id="list-label">Loading markets…</span><span class="tiny-label">PANTA CATALOG</span></div>
+          <div id="market-list" class="market-list" aria-live="polite"></div>
+          <button id="load-more" class="load-more" type="button" hidden>Load more markets <span aria-hidden="true">↓</span></button>
+        </div>
+
+        <section id="detail-panel" class="detail-panel" aria-live="polite" aria-labelledby="detail-heading">
+          <div id="detail-empty" class="detail-empty"><div class="empty-orbit">◎</div><p class="eyebrow light">MARKET BRIEF</p><h3 id="detail-heading">Choose a market<br>to see the full picture.</h3><p>Spot prices, market timing, activity, and a verifiable transaction trail will appear here.</p></div>
+          <div id="detail-content" hidden>
+            <div class="detail-head"><span class="eyebrow light">LIVE BRIEF <span class="brief-dash">/</span> <span id="detail-category">MARKET</span></span><span id="detail-phase" class="phase-tag"></span></div>
+            <h3 id="detail-title" class="detail-title"></h3><p id="detail-description" class="detail-description"></p>
+            <div class="price-section"><div class="price-topline"><span>MARKET PRICE</span><span id="detail-updated">—</span></div><div class="price-grid"><div class="price-yes"><small>YES SHARE</small><strong id="yes-price">—</strong></div><div class="price-no"><small>NO SHARE</small><strong id="no-price">—</strong></div></div><div class="price-bar"><span id="yes-bar"></span></div><p id="price-note" class="price-note">Spot share prices are market signals, not guaranteed outcomes.</p></div>
+            <dl class="market-facts"><div><dt>Volume</dt><dd id="detail-volume">—</dd></div><div><dt>Market closes</dt><dd id="detail-closes">—</dd></div><div><dt>Region</dt><dd id="detail-region">—</dd></div><div><dt>Market ID</dt><dd id="detail-id" class="address">—</dd></div></dl>
+            <form id="receipt-form" class="receipt-form">
+              <p class="eyebrow light">MAKE YOUR CALL</p>
+              <h4>Capture your prediction.</h4>
+              <p>Choose a side, then save Panta’s quoted price and time in a shareable receipt. Anyone opening it can see how the market moves afterward.</p>
+              <fieldset class="receipt-side"><legend>Your call</legend><label><input type="radio" name="forecast-side" value="yes" required> YES</label><label><input type="radio" name="forecast-side" value="no"> NO</label></fieldset>
+              <label for="receipt-note">Your context <span>(optional, up to 240 characters)</span></label>
+              <textarea id="receipt-note" maxlength="240" rows="3" placeholder="Why does this forecast matter to your audience?"></textarea>
+              <button id="capture-submit" type="submit" disabled>Waiting for Panta prices…</button>
+              <p id="receipt-status" role="status"></p>
+            </form>
+            <div class="trade-head"><div><h4>On-chain activity</h4><p id="trade-summary">Recent reported trades</p></div><span class="chain-badge">◎ SOLANA</span></div><div id="trade-list" class="trade-list"></div>
+            <div class="brief-actions"><button id="follow-button" class="secondary-button" type="button">☆ Follow market</button><button id="copy-link" class="secondary-button" type="button">↗ Copy link</button><button id="copy-brief" class="secondary-button" type="button">▤ Copy brief</button><button id="copy-embed" class="secondary-button" type="button">⌘ Copy embed</button></div>
+            <p id="action-feedback" class="action-feedback" role="status"></p>
+            <p class="detail-credit">Live market data <a href="https://www.panta.market/" target="_blank" rel="noopener noreferrer">Powered by Panta ↗</a></p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="portfolio-section shell" id="portfolio" aria-labelledby="portfolio-title"><div class="portfolio-copy"><p class="eyebrow light">02 / WALLET LENS</p><h2 id="portfolio-title">See the other side<br>of a forecast.</h2><p>Enter a public Solana address to inspect its Panta positions, their current estimated value, and whether resolved shares are claimable.</p><p class="portfolio-footnote">Read-only. No wallet connection, signing, or funds required.</p></div><div class="portfolio-card"><label for="wallet-input">SOLANA WALLET ADDRESS</label><form id="wallet-form"><input id="wallet-input" type="text" autocomplete="off" spellcheck="false" placeholder="Paste a public wallet address" required><button type="submit">Inspect ↗</button></form><p id="wallet-status" role="status">Position data is sourced from Panta and public on-chain markets.</p><div id="positions-list"></div><p class="wallet-credit"><a href="https://www.panta.market/" target="_blank" rel="noopener noreferrer">Powered by Panta ↗</a></p></div></section>
+  </main>
+  <footer class="site-footer shell"><div><span class="brand-mark small">F<span class="brand-dot">.</span></span><span>FORECASTWIRE</span></div><p>Context for the curious. Verify the market before you share the story.</p><a href="https://www.panta.market/" target="_blank" rel="noopener noreferrer">Powered by Panta ↗</a></footer>
+</body>
+</html>
