@@ -26,7 +26,10 @@ async function json(resource) {
   return body;
 }
 function schedule(minDelay = 0) {
-  const delay = Math.max(minDelay, [2_000, 5_000, 12_000, 30_000, 60_000][Math.min(retryCount++, 4)]);
+  // Retry incomplete market details promptly at first, then ease off so an
+  // extended Panta outage does not generate a steady stream of requests.
+  const intervals = [2_000, 3_000, 5_000, 10_000, 20_000, 30_000, 60_000];
+  const delay = Math.max(minDelay, intervals[Math.min(retryCount++, intervals.length - 1)]);
   setTimeout(loadLive, delay);
 }
 function changeText(nowSide) {
