@@ -178,7 +178,7 @@ async function serveAsset(res, pathname) {
   res.end(content);
 }
 
-export function createApp({ apiKey = process.env.PANTA_API_KEY, receiptSecret = process.env.FORECASTWIRE_RECEIPT_SECRET, baseUrl = process.env.PANTA_API_BASE_URL, cluster = process.env.PANTA_SOLANA_CLUSTER || 'mainnet-beta', fetchImpl, now, usageLog = (event) => console.info(`forecastwire_usage event=${event}`) } = {}) {
+export function createApp({ apiKey = process.env.PANTA_API_KEY, receiptSecret = process.env.FORECASTWIRE_RECEIPT_SECRET, baseUrl = process.env.PANTA_API_BASE_URL, cluster = process.env.PANTA_SOLANA_CLUSTER || 'mainnet-beta', fetchImpl, now } = {}) {
   const client = new PantaClient({ apiKey, baseUrl, fetchImpl, now });
   const signingKey = receiptKey(apiKey, receiptSecret);
   return createServer(async (req, res) => {
@@ -208,14 +208,11 @@ export function createApp({ apiKey = process.env.PANTA_API_KEY, receiptSecret = 
         const snapshot = { v: 1, marketId: input.marketId, title: market.title.trim(), side: input.side, yes, no,
           phase: market.phase || 'unknown', cluster, capturedAt: new Date(fetchedAt).toISOString(), note };
         const token = signReceipt(snapshot, signingKey);
-        usageLog('receipt_created');
         return sendJson(res, 201, { url: `/receipt?token=${token}`, snapshot });
       }
       if (req.method !== 'GET') throw new ApiError(405, 'METHOD_NOT_ALLOWED', 'Only GET requests are supported here.');
       if (pathname === '/api/receipt') {
-        const snapshot = verifyReceipt(searchParams.get('token'), signingKey);
-        usageLog('receipt_verified');
-        return sendJson(res, 200, { snapshot, verified: true });
+        return sendJson(res, 200, { snapshot: verifyReceipt(searchParams.get('token'), signingKey), verified: true });
       }
       if (pathname === '/healthz') {
         return sendJson(res, apiKey ? 200 : 503, { ok: Boolean(apiKey) });
