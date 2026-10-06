@@ -2,6 +2,9 @@
 
 **Capture the quote. Revisit the signal.** ForecastWire lets anyone publish a YES/NO call on a Panta market with its source price and time, then lets others see how the market price changes. It is an MVP for the Colosseum Crypto World's Fair and Panta API Sidetrack.
 
+**Live app:** https://forecastwire.onrender.com/  
+**Public source:** https://github.com/adrianmuk/forecastwire
+
 ## The problem
 
 When a prediction is shared in a chat or post, the market price quoted alongside it soon becomes stale. Others need to see what Panta reported at the time of the call and how that price has moved since.
@@ -83,7 +86,7 @@ For an open position, the displayed estimate is `shares × current price of that
 
 ## Project status
 
-The code and mocked integration tests are complete. A Panta key has been used in local development; the receipt flow still needs a live end-to-end check with a real market. A public deployment, repo, pitch video, and demo video remain to be completed. See [submission preparation](docs/SUBMISSION.md), the [pitch script](docs/PITCH.md), and [demo shot list](docs/DEMO.md).
+The public MVP is live on Render. A real Panta market and signed receipt were checked in a separate private browser session and on a phone; the captured quote remained verifiable, and current prices loaded. Panta details can intermittently omit prices, so the receipt shows an unavailable state and retries. External user feedback, the presentation and demo videos, and the two hackathon submissions remain to be completed. See [submission preparation](docs/SUBMISSION.md), the [pitch script](docs/PITCH.md), and [demo shot list](docs/DEMO.md).
 
 ## Sources
 

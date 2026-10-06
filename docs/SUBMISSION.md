@@ -26,11 +26,11 @@ The [Panta API Sidetrack](https://superteam.fun/earn/listing/panta-api-side-trac
 
 **Development history:** [Record work completed within the September 14–October 12 hackathon period; disclose any earlier ForecastWire or reused project code accurately. Mention AI coding assistance if the portal asks about tools or development process.]
 
-**Stage and validation:** [After deployment, record the actual live Panta markets tested, successful receipt checks, observed feedback, and any remaining limits. Do not claim traction without evidence.]
+**Stage and validation:** Public MVP deployed on Render. On October 6, a signed receipt from a real Panta market was opened in a separate private browser session and on a phone. The original quote verified and current prices appeared. Current prices can be temporarily unavailable while Panta market detail is incomplete; the app retries. No external user feedback or usage is claimed yet.
 
-**Live URL:** [Render URL]
+**Live URL:** https://forecastwire.onrender.com/
 
-**Public source repository:** [GitHub URL]
+**Public source repository:** https://github.com/adrianmuk/forecastwire
 
 **Product graphic:** `assets/forecastwire-card.png`; square logo: `assets/forecastwire-logo.png` (use whichever the portal asks for)
 
@@ -48,20 +48,20 @@ The [Panta API Sidetrack](https://superteam.fun/earn/listing/panta-api-side-trac
 
 **Product and potential:** Start with individual public calls and short links in community discussions. The next product test is whether repeat posters want an embeddable history or community workspace. [Add observed usage or feedback only after it occurs.]
 
-**Working demo:** [Render URL]
+**Working demo:** https://forecastwire.onrender.com/
 
 **Official Colosseum submission:** [Project URL after submitting there]
 
-**Public code:** [GitHub URL]
+**Public code:** https://github.com/adrianmuk/forecastwire
 
 **Demo video:** [Video URL]
 
 ## Final sequence
 
 - [ ] Register for and join the Crypto World's Fair in Colosseum. Add any teammates before submitting.
-- [ ] Put the application files at the root of a GitHub repository; ensure `.env` and all secrets are absent. Review the included MIT `LICENSE` before making the repository public.
-- [ ] Deploy a Node web service on Render using `render.yaml` or the manual settings in [`RENDER.md`](RENDER.md). Save the Panta key and a stable receipt secret as private environment variables.
-- [ ] Verify `/healthz`, a real open market, both prices, capture, receipt reopening in a private window, an explorer link if available, and a phone-sized layout.
+- [x] Publish the application files at the root of a public GitHub repository. Before final submission, review the repository for accidental secrets and the included MIT `LICENSE`.
+- [x] Deploy the Node web service on Render and configure its private Panta key and receipt signing secret. Keep the signing secret stable across redeployments.
+- [ ] Finish the public smoke check: `/healthz`, open market and both prices, capture, receipt in a private window and on a phone were observed; verify an explorer link where a real trade is available and reopen an earlier receipt after a redeploy.
 - [ ] Upload a real logo/graphic, record the [pitch](PITCH.md) and [technical demo](DEMO.md), and confirm both URLs are publicly accessible.
 - [ ] Share the live app using the [feedback draft](DISCORD.md). Record only feedback and usage that actually occurred; zero external traction is permissible.
 - [ ] Fill the remaining placeholders above with verified URLs, team background, development history, and actual results.
